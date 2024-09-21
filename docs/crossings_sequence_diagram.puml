@@ -1,0 +1,24 @@
+@startuml "crossings_sequence_diagram"
+title "Crossings sequence diagram"
+autonumber
+actor Client #blue
+participant "crossings-collector-service" as app #E8B86D
+queue crossings 
+
+Client->app: POST /crossings
+activate Client
+activate app
+app->app: validateEvent(event)
+alt event is valid
+    app->crossings: publish(event)
+    activate crossings
+    app<--crossings
+    deactivate crossings
+    Client<--app: (202)
+else event is invalid
+    Client <-- app: (400)
+end
+deactivate app
+deactivate Client
+
+@enduml

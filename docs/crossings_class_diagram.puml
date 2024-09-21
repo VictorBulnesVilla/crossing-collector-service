@@ -1,0 +1,29 @@
+@startuml "crossings_class_diagram"
+title "Crossings class diagram"
+class Crossing {
+    type : string
+    timestamp : Instant
+    portCode : Integer
+}
+interface CrossingController {
+    void addCrossing(Request r)
+}
+class CrossingControllerImpl {
+    publisher : CrossingPublisher
+    void addCrossing(Request r)
+
+}
+interface CrossingPublisher{
+    void publish(Crossing c)
+}
+class RabbitCrossingPublisher{
+    void publish(Crossing c)
+}
+
+CrossingPublisher <|.. RabbitCrossingPublisher
+CrossingController <|.. CrossingControllerImpl
+CrossingControllerImpl *-- CrossingPublisher
+Crossing -- RabbitCrossingPublisher : use <
+CrossingControllerImpl -- Crossing : creates >
+@enduml
+

@@ -10,7 +10,7 @@ activate Client
 activate app
 app->app: validateEvent(event)
 alt event is valid
-    app->crossings: publish(event)
+    app->crossings: publish(Crossing c)
     activate crossings
     app<--crossings
     deactivate crossings

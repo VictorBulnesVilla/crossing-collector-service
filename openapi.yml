@@ -1,0 +1,60 @@
+openapi: 3.0.3
+info:
+  title: ejemplo
+  description: |-
+    This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about
+    Swagger at [https://swagger.io](https://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!
+    You can now help us improve the API whether it's by making changes to the definition itself or to the code.
+    That way, with time, we can improve the API in general, and expose some of the new features in OAS3.
+
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: https://petstore3.swagger.io/api/v3
+tags:
+  - name: Crossing
+    description: API to work with crossing events
+paths:
+  /crossings:
+    post:
+      tags:
+        - Crossing
+      summary: Add new crossing
+      description: Add a new entry point crossing
+      operationId: addCrossing
+      requestBody:
+        description: Crossing event
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Crossing'
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad request
+        '500':
+          description: Internal Server Error
+components:
+  schemas:
+    Crossing:
+      required:
+        - type
+        - timestamps
+        - portCode
+      type: object
+      properties:
+        type:
+          type: string
+          example: Buses
+        timestamps:
+          type: string
+          example: 2019-11-14T00:55:31.820Z
+        portCode:
+          type: integer
+          format: int32
+          example: 10

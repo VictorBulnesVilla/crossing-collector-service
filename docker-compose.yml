@@ -17,6 +17,14 @@ services:
      - 15672:15672
     networks:
      - test-network
+  crossingsCollector:
+    image: crossings-collector
+    container_name: app
+    ports: 
+     - 8089:8080
+    networks:
+     - test-network
+
 
 networks:
   test-network:

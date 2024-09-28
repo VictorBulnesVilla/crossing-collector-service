@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import java.time.Instant;
 
 @ExtendWith(MockitoExtension.class)
 public class CrossingControllerImpTest {
@@ -19,7 +20,7 @@ public class CrossingControllerImpTest {
     @Mock private CrossingPublisher crossingPublisher; 
     @BeforeEach public void SetUp(){
         crossingControllerImpl = new CrossingControllerImpl(crossingPublisher);
-        crossing = new Crossing();
+        crossing = new Crossing("bus",Instant.now(),1);
     }
     @Test
     public void addCrossing_returns202(){

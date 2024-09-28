@@ -23,18 +23,18 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
 dependencies {
-    // Use JUnit Jupiter for testing.
-    testImplementation libs.junit.jupiter
-
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
     // This dependency is used by the application.
     implementation libs.guava
-
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.rabbitmq:amqp-client:5.22.0'
+
+    // Use JUnit Jupiter for testing.
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.mockito:mockito-core:5.13.0'
+
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

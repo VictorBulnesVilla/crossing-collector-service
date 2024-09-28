@@ -24,7 +24,6 @@ public class RabbitCrossingPublisherTest {
     @BeforeEach
     void setUp() throws Exception{
         ConnectionFactory factory = new ConnectionFactory();
-        // "guest"/"guest" by default, limited to localhost connections
         factory.setUsername("guest");
         factory.setPassword("guest");
         factory.setVirtualHost("/");

@@ -30,7 +30,6 @@ public class RabbitCrossingPublisher implements CrossingPublisher {
         try(Channel channel = conn.createChannel()){
             channel.basicPublish(exchange, routingKey, null, messageBodyBytes);
         }catch(IOException | TimeoutException | ShutdownSignalException e){
-            //e.printStackTrace();
             throw new IllegalStateException(e);
         }
     }

@@ -14,9 +14,12 @@ services:
     container_name: rabbitmq
     ports: 
      - 5672:5672
-     - 15672:15672
+     - 15672:15672 
     networks:
      - test-network
+    volumes:
+      - "./docker/rabbitmq.config:/etc/rabbitmq/conf.d/advance.conf"
+      - "./docker/definitions.json:/etc/rabbitmq/definitions.json"
   crossingsCollector:
     image: crossings-collector
     container_name: app
@@ -24,6 +27,10 @@ services:
      - 8089:8080
     networks:
      - test-network
+    environment:
+     - RABBIT_URI=amqp://guest:guest@rabbitmq:5672/%2F
+     - RABBIT_EXCHANGE=e.crossing.collected
+     - RABBIT_ROUTING_KEY=crossing
 
 
 networks:

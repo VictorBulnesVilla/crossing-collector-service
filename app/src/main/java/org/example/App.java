@@ -10,9 +10,6 @@ public class App {
     }
 
     public static void main(String[] args) {
-
-        //RabbitCrossingPublisher rabbitCrossingPublisher = new RabbitCrossingPublisher(null, null, null);
-
         System.out.println(new App().getGreeting());
         SpringApplication.run(App.class, args);
     }

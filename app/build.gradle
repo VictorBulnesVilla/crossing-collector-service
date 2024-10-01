@@ -21,6 +21,7 @@ repositories {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
 
 dependencies {
     // This dependency is used by the application.
@@ -47,4 +48,14 @@ java {
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+task dockerBuild(type:Exec){
+    commandLine "docker", "build", "-t", "crossings-collector", "."
+}
+
+dockerBuild.dependsOn build
+
+jar{
+    enabled = false
 }
